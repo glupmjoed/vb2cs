@@ -3,10 +3,10 @@ using ICSharpCode.CodeConverter;
 
 namespace CodeConverterCLI
 {
-    class CLI
-    {
-        static void Main(string[] args)
-        {
+	class CLI
+	{
+		static void Main(string[] args)
+		{
 			var result = CodeConverter.Convert(
 				new CodeWithOptions(Console.In.ReadToEnd())
 				.WithDefaultReferences()
@@ -19,6 +19,6 @@ namespace CodeConverterCLI
 				Console.Error.WriteLine("Error:");
 				Console.Error.WriteLine(result.GetExceptionsAsString());
 			}
-        }
-    }
+		}
+	}
 }
