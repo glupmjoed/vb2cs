@@ -1,3 +1,5 @@
 *~
 CodeConverterCLI/bin/*
 CodeConverterCLI/obj/*
+*.html
+*.pdf
