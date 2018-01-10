@@ -4,6 +4,95 @@ vb2cs
 vb2cs is a command line wrapper for SharpDevelop's
 link:https://github.com/icsharpcode/CodeConverter/[VB.NET ⇨ C# converter].
 
+Setup
+-----
+
+For the script to work, you need to build the `CodeConverterCLI` project with a
+C# toolchain.
+
+The project depends on SharpDevelop's `CodeConverter` version 5.5.0, which should be installed automatically if you follow xref:installation-linux[the instructions below].
+
+Alternatively, `CodeConverter` may be installed manually through a link:https://www.nuget.org/packages/ICSharpCode.CodeConverter/[a .NET package manager] or link:https://github.com/icsharpcode/CodeConverter/[build from source]. If you undertake the journey of building everything yourself, be aware that `CodeConverter` itself depends heavily on the `Microsoft.CodeAnalysis` (Roslyn) package, which must also be obtained link:https://www.nuget.org/packages/Microsoft.CodeAnalysis/[from a package] or link:https://github.com/dotnet/roslyn[from source].
+
+[[installation-linux]]
+Example: Linux with .NET Core CLI
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If the `dotnet` command is already available on your system, you can skip
+directly to xref:clone-and-build[cloning and building the project]. Otherwise,
+continue below.
+
+Install the .NET SDK
+^^^^^^^^^^^^^^^^^^^^
+
+Locate your distribution specific instructions in
+link:https://www.microsoft.com/net/learn/get-started/linuxubuntu[this guide] and
+follow steps 1 and 2.
+
+E.g. on Ubuntu 16.04:
+
+Add Microsoft's server as a package source:
+
+[source,shell]
+$ curl https://packages.microsoft.com/keys/microsoft.asc |
+      gpg --dearmor > microsoft.gpg
+
+[source,shell]
+$ sudo mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
+
+[source,shell]
+$ sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-xenial-prod xenial main" > /etc/apt/sources.list.d/dotnetdev.list'
+
+Install the SDK:
+
+[source,shell]
+$ sudo apt update && sudo apt install dotnet-sdk-2.1.4
+
+Disable Obnoxious Spying
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Microsoft distribute binaries of their
+link:https://github.com/dotnet/cli[otherwise free and open source .NET Core CLI
+tool] with
+link:https://www.microsoft.com/net/dotnet_library_license.htm[weird licensing
+requirements] and with
+link:https://docs.microsoft.com/en-us/dotnet/core/tools/telemetry[telemetry
+enabled] per default. The telemetry can be disabled for the current shell session
+by setting the environment variable `DOTNET_CLI_TELEMETRY_OPTOUT` to
+`1`:
+
+[source,shell]
+$ export DOTNET_CLI_TELEMETRY_OPTOUT=1
+
+It can be turned off permanently by adding the above command to your `.bashrc`,
+`.profile` or similar shell configuration file.
+
+[[clone-and-build]]
+Clone and build project
+^^^^^^^^^^^^^^^^^^^^^^^
+
+[source,shell]
+$ git clone https://github.com/glupmjoed/vb2cs.git
+$ cd vb2cs/CodeConverterCLI
+
+Identify the correct
+link:https://docs.microsoft.com/en-us/dotnet/core/rid-catalog#linux-rids[runtime
+identifier] for your platform, and pass it to the build command with the `-r`
+flag, e.g.:
+
+[source,shell]
+$ dotnet build -r ubuntu.16.04-x64
+
+This command automatically installs any project dependencies globally (`/usr/share/dotnet`) and compiles the project for the target platform. It should complete with the message "Build succeeded.", along with some statistics.
+
+If you need to distribute the resulting binary, you may instead want to use `dotnet publish`. It link:https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-publish?tabs=netcore2x[includes all dependencies in a local subdirectory] when building the project.
+
+Optionally, return to the project root folder to use the `vb2sh.sh` script:
+
+[source,shell]
+$ cd ..
+
+
 Usage
 -----
 
