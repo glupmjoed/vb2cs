@@ -10,9 +10,18 @@ Setup
 For the script to work, you need to build the `CodeConverterCLI` project with a
 C# toolchain.
 
-The project depends on SharpDevelop's `CodeConverter` version 5.5.0, which should be installed automatically if you follow xref:installation-linux[the instructions below].
+The project depends on SharpDevelop's `CodeConverter` version 5.5.0, which should
+be installed automatically if you follow xref:installation-linux[the instructions
+below].
 
-Alternatively, `CodeConverter` may be installed manually through a link:https://www.nuget.org/packages/ICSharpCode.CodeConverter/[a .NET package manager] or link:https://github.com/icsharpcode/CodeConverter/[build from source]. If you undertake the journey of building everything yourself, be aware that `CodeConverter` itself depends heavily on the `Microsoft.CodeAnalysis` (Roslyn) package, which must also be obtained link:https://www.nuget.org/packages/Microsoft.CodeAnalysis/[from a package] or link:https://github.com/dotnet/roslyn[from source].
+Alternatively, `CodeConverter` may be installed manually through a
+link:https://www.nuget.org/packages/ICSharpCode.CodeConverter/[a .NET package
+manager] or link:https://github.com/icsharpcode/CodeConverter/[build from
+source]. If you undertake the journey of building everything yourself, be aware
+that `CodeConverter` itself depends heavily on the `Microsoft.CodeAnalysis`
+(Roslyn) package, which must also be obtained
+link:https://www.nuget.org/packages/Microsoft.CodeAnalysis/[from a package] or
+link:https://github.com/dotnet/roslyn[from source].
 
 [[installation-linux]]
 Example: Linux with .NET Core CLI
@@ -83,9 +92,14 @@ flag, e.g.:
 [source,shell]
 $ dotnet build -r ubuntu.16.04-x64
 
-This command automatically installs any project dependencies globally (`/usr/share/dotnet`) and compiles the project for the target platform. It should complete with the message "Build succeeded.", along with some statistics.
+This command automatically installs any project dependencies globally
+(`/usr/share/dotnet`) and compiles the project for the target platform. It should
+complete with the message "Build succeeded.", along with some statistics.
 
-If you need to distribute the resulting binary, you may instead want to use `dotnet publish`. It link:https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-publish?tabs=netcore2x[includes all dependencies in a local subdirectory] when building the project.
+If you need to distribute the resulting binary, you may instead want to use
+`dotnet publish`. It
+link:https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-publish?tabs=netcore2x[
+includes all dependencies in a local subdirectory] when building the project.
 
 Optionally, return to the project root folder to use the `vb2sh.sh` script:
 
