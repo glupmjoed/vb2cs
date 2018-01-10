@@ -1,4 +1,5 @@
 #!/bin/sed -Ef
 
-# remove byte order mark
+# Remove byte order mark:
+
 1 s/^\xef\xbb\xbf//
