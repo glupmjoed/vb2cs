@@ -6,7 +6,8 @@ Module Program
         Dim rows As Integer
 
         ' Input validation.
-        Do Until Integer.TryParse(ReadLine("Enter a value for how many rows to be displayed: "), rows) AndAlso rows >= 1
+        Do Until Integer.TryParse(ReadLine("Enter a value for how many rows" & _
+        "to be displayed: "), rows) AndAlso rows >= 1
             WriteLine("Allowed range is 1 and {0}", Integer.MaxValue)
         Loop
 
