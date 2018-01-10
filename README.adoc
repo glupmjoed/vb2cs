@@ -1,0 +1,12 @@
+vb2cs
+=====
+
+vb2cs is a command line wrapper for SharpDevelop's link:https://github.com/icsharpcode/CodeConverter/[VB.NET ⇨ C# converter].
+
+Usage
+-----
+
+The shell script (`vb2cs.sh`) reads Visual Basic .NET code from `stdin` and writes the corresponding C# code to `stdout`.
+
+[source,shell]
+$ cat file.vb | ./vb2cs.sh
