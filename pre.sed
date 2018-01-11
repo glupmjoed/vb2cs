@@ -4,6 +4,10 @@
 
 1 s/^\xef\xbb\xbf//
 
+# Remove trailing carriage returns:
+
+s/\r$//
+
 # The rewrite rule below is part of an attempt at fixing the CodeConverter
 # library's handling of one-dimensional array declarations in VB.NET.
 #
