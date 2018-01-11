@@ -26,8 +26,8 @@ s/\bDim (\w+)\((\w+)\) [aA]s (\w+)$/Dim \1__\2 As \3() = New \3() {}/g
 # We rewrite the statement
 #     ReDim <ARRAY>(<UPPER>)
 # to
-#     System.Array.Resize(ref <ARRAY>, <UPPER>+1)
+#     System.Array.Resize(<ARRAY>, <UPPER>+1)
 #     System.Array.Clear(<ARRAY>, 0, <ARRAY>.Length)
 
-s/([\t ]*)Re[dD]im (\w+)\((\w+)\)$/\1System.Array.Resize(ref \2, \3+1)\
+s/([\t ]*)Re[dD]im (\w+)\((\w+)\)$/\1System.Array.Resize(\2, \3+1)\
 \1System.Array.Clear(\2, 0, \2.Length)/g
