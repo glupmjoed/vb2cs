@@ -1,5 +1,7 @@
 *~
 CodeConverterCLI/bin/*
 CodeConverterCLI/obj/*
+*.cs
+*.exe
 *.html
 *.pdf
