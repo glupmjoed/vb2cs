@@ -19,11 +19,13 @@ s/\r$//
 
 s/\bDim (\w+)\((\w+)\) [aA]s (\w+)$/Dim \1__\2 As \3() = New \3() {}/g
 
-# The rewrite rule below is an attempt at implementing code conversion for the
+# The rewrite rules below are an attempt at implementing code conversion for the
 # ReDim statement (which is not supported by the CodeConverter library). For
 # now, the workaround only targets one-dimensional arrays.
 #
-# We rewrite the statement
+# ReDim rewrite rule 1:
+#
+# Rewrite the statement
 #     ReDim <ARRAY>(<UPPER>)
 # to
 #     System.Array.Resize(<ARRAY>, <UPPER>+1)
@@ -31,3 +33,12 @@ s/\bDim (\w+)\((\w+)\) [aA]s (\w+)$/Dim \1__\2 As \3() = New \3() {}/g
 
 s/([\t ]*)Re[dD]im (\w+)\((\w+)\)$/\1System.Array.Resize(\2, \3+1)\
 \1System.Array.Clear(\2, 0, \2.Length)/g
+
+# ReDim rewrite rule 2:
+#
+# Rewrite the statement
+#     ReDim Preserve <ARRAY>(<UPPER>)
+# to
+#     System.Array.Resize(<ARRAY>, <UPPER>+1)
+
+s/\bRe[dD]im Preserve (\w+)\((\w+)\)$/System.Array.Resize(\1, \2+1)/g
