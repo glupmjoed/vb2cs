@@ -2,4 +2,6 @@
 
 cli=$(find CodeConverterCLI/bin/Debug/ | grep 'CodeConverterCLI$' | head -1)
 
-./pre.sed | ./$cli | ./post.sed
+if [ $1 ]; then ./pre.sed $1; else ./pre.sed; fi |
+
+    ./$cli | ./post.sed
