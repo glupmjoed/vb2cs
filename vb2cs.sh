@@ -16,6 +16,8 @@ shift $((OPTIND - 1))
 # Locate CodeConverterCLI binary
 if [ -z $CCCLI ]
 then
+    # Search for a code converter binary with the right name in a subfolder
+    # where C# toolchain builds are typically found
     CCCLI=$(find $BNAME/bin/Debug/ |grep "$BNAME\$" | head -1)
 
     # Exit if the binary wasn't found
@@ -26,8 +28,10 @@ then
     fi
 fi
 
+# Apply preprocessing script to either stdin or a file name, depending on $1
 if [ $1 ]; then ./pre.sed $1; else ./pre.sed; fi |
 
+    # Pipe preprocessed code to main binary
     $CCCLI |
 
     # Postprocess generated code. Change newlines to \r\n if -r flag is set
