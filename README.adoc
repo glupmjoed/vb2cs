@@ -112,8 +112,25 @@ $ cd ..
 Usage
 -----
 
-The shell script (`vb2cs.sh`) reads Visual Basic .NET code from `stdin` and
-writes the corresponding C# code to `stdout`.
+You'll need link:https://en.wikipedia.org/wiki/Bash_%28Unix_shell%29[Bash] or a
+similar shell environment to execute the script (`vb2cs.sh`).
+
+The script read a Visual Basic .NET program from `stdin` and writes the
+corresponding C# code to `stdout`, e.g.:
 
 [source,shell]
 $ cat file.vb | ./vb2cs.sh
+[ C# code is printet to the terminal ]
+
+or
+
+[source,shell]
+$ ./vb2cs.sh < file.vb > output.cs
+[ C# code is piped to the file output.cs ]
+
+Alternatively, the input file name can be read from an optional first command
+line argument:
+
+[source,shell]
+$ ./vb2cs.sh file.vb
+[ C# code is printet to the terminal ]
