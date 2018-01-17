@@ -7,18 +7,20 @@ link:https://github.com/icsharpcode/CodeConverter/[VB.NET ⇨ C# converter].
 Setup
 -----
 
-For the script to work, you need to compile the `CodeConverterCLI` project with a
-C# toolchain.
+For the script to work, you need to compile the C# project in the
+`CodeConverterCLI/` folder with a .NET toolchain. If you already have the
+`CodeConverterCLI` binary available, you can jump directly to the xref:usage[
+usage instructions].
 
-The project depends on SharpDevelop's `CodeConverter` version 5.5.0, which should
-be installed automatically if you follow xref:installation-linux[the instructions
-below].
+The project depends on SharpDevelop's CodeConverter version 5.5.0, which should
+be installed automatically if you follow the xref:installation-linux[setup
+example] below.
 
-Alternatively, `CodeConverter` may be installed manually through a
+Alternatively, CodeConverter may be installed manually through a
 link:https://www.nuget.org/packages/ICSharpCode.CodeConverter/[.NET package
 manager] or link:https://github.com/icsharpcode/CodeConverter/[build from
 source]. If you undertake the journey of building everything yourself, be aware
-that `CodeConverter` depends heavily on the `Microsoft.CodeAnalysis` (Roslyn)
+that CodeConverter depends heavily on the Microsoft.CodeAnalysis (Roslyn)
 package, which must similarly be obtained
 link:https://www.nuget.org/packages/Microsoft.CodeAnalysis/[as a binary package]
 or link:https://github.com/dotnet/roslyn[build from source].
@@ -50,7 +52,9 @@ $ curl https://packages.microsoft.com/keys/microsoft.asc |
 $ sudo mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
 
 [source,shell]
-$ sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-xenial-prod xenial main" > /etc/apt/sources.list.d/dotnetdev.list'
+$ sudo sh -c 'echo deb [arch=amd64] \
+https://packages.microsoft.com/repos/microsoft-ubuntu-xenial-prod xenial main >\
+/etc/apt/sources.list.d/dotnetdev.list'
 
 Install the SDK:
 
@@ -84,7 +88,7 @@ Clone and build project
 $ git clone https://github.com/glupmjoed/vb2cs.git
 $ cd vb2cs/CodeConverterCLI
 
-Identify the correct
+Identify the
 link:https://docs.microsoft.com/en-us/dotnet/core/rid-catalog#linux-rids[runtime
 identifier] for your platform, and pass it to the build command with the `-r`
 flag, e.g.:
@@ -93,15 +97,16 @@ flag, e.g.:
 $ dotnet build -r ubuntu.16.04-x64
 
 This command automatically installs any project dependencies globally
-(`/usr/share/dotnet/...`), compiles the project for the target platform, and
+(/usr/share/dotnet/...), compiles the project for the target platform, and
 places the resulting binary in a subdirectory of the current working directory
-(`bin/Debug/...`). It should complete with the message "Build succeeded.", along
-with some statistics.
+($PWD/bin/Debug/...). It should complete with the message "Build succeeded.",
+along with some statistics.
 
-If you need to distribute the resulting binary, you may instead want to use
+If you need to distribute the resulting binary, the
 link:https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-publish?tabs=netcore2x[
-`dotnet publish`]. It includes all dynamically linked dependencies in a local
-subdirectory when building the project.
+`dotnet publish`] subcommand might be a better choice. It includes all
+dynamically linked dependencies in a local subdirectory when building the
+project.
 
 Optionally, return to the project root folder to use the `vb2sh.sh` script:
 
@@ -109,6 +114,7 @@ Optionally, return to the project root folder to use the `vb2sh.sh` script:
 $ cd ..
 
 
+[[usage]]
 Usage
 -----
 
@@ -119,10 +125,8 @@ The script read a Visual Basic .NET program from `stdin` and writes the
 corresponding C# code to `stdout`, e.g.:
 
 [source,shell]
-$ cat file.vb | ./vb2cs.sh
+$ ./vb2cs.sh < file.vb
 [ C# code is printet to the terminal ]
-
-or
 
 [source,shell]
 $ ./vb2cs.sh < file.vb > output.cs
@@ -134,3 +138,7 @@ line argument:
 [source,shell]
 $ ./vb2cs.sh file.vb
 [ C# code is printet to the terminal ]
+
+[source,shell]
+$ ./vb2cs.sh file.vb > output.cs
+[ C# code is piped to the file output.cs ]
