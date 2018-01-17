@@ -142,3 +142,28 @@ $ ./vb2cs.sh file.vb
 [source,shell]
 $ ./vb2cs.sh file.vb > output.cs
 [ C# code is piped to the file output.cs ]
+
+Command-line options
+~~~~~~~~~~~~~~~~~~~~
+
+The script's behaviour can be changed with a few different flags, described below.
+
+-b
+^^
+
+`vb2cs.sh` searches the `CodeConverterCLI/bin/Debug/` folder recursively and uses the first file named `CodeConverterCLI` it finds as its code conversion binary. If your binary lives in another directory or has another name (e.g. `CodeConverterCLI.exe`), use the `-b` flag to specify an alternative path:
+
+[source,shell]
+$ ./vb2cs.sh -b /path/to/my/codeconverter file.vb
+
+-r
+^^
+
+The script normally outputs C# code with Unix-style line-endings (`\n`). Use the `-r` flag if you want `\r\n` line-endings instead:
+
+[source,shell]
+$ ./vb2cs.sh file.vb > a.cs
+$ ./vb2cs.sh -r file.vb > b.cs
+$ file [ab].cs
+a.cs: ASCII text
+b.cs: ASCII text, with CRLF line terminators
