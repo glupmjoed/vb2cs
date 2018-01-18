@@ -13,4 +13,4 @@ s/\r$//
 #     <TYPE>[] <ARRAY> = new <TYPE>[<UPPER> + 1];
 # as the second and final stage of the workaround (see also pre.sed)
 
-s/(\w+)\[\] (\w+)__(\w+) = new \1\[\];$/\1[] \2 = new \1[\3 + 1];/g
+s/\b(\w+)\[\] (\w+)__(\w+) = new \1\[\];$/\1[] \2 = new \1[\3 + 1];/g
