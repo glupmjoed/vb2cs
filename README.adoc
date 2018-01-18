@@ -155,11 +155,16 @@ The script's behaviour can be changed with a few different flags, described belo
 
 [source,shell]
 $ ./vb2cs.sh -b /path/to/my/codeconverter file.vb
+[ C# code is printet to the terminal ]
+
+[source,shell]
+$ echo "passthrough" | ./vb2cs.sh -b cat
+passthrough
 
 -r
 ^^
 
-The script normally outputs C# code with Unix-style line-endings (`\n`). Use the `-r` flag if you want `\r\n` line-endings instead:
+The script normally outputs C# code with Unix-style line-endings (`\n`). Use the `-r` flag if you want `\r\n` line-endings:
 
 [source,shell]
 $ ./vb2cs.sh file.vb > a.cs
