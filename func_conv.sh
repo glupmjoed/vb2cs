@@ -17,6 +17,9 @@ DIR_PATH_O="Assembly.GetExecutingAssembly().Location"
 FILE_EXISTS_I="My.Computer.FileSystem.FileExists"
 FILE_EXISTS_O="System.IO.File.Exists"
 
+GET_OBJECT_I="GetObject"
+GET_OBJECT_O="Microsoft.VisualBasic.GetObject"
+
 # Translation variables for libraries with ambiguous import paths
 
 XDOC_I="XDocument"
@@ -33,6 +36,7 @@ s/\b$CREAT_DIR_I\b/$CREAT_DIR_O/g
 s/\b$DEL_FILE_I\b/$DEL_FILE_O/g
 s/\b$DIR_PATH_I\b/$DIR_PATH_O/g
 s/\b$FILE_EXISTS_I\b/$FILE_EXISTS_O/g
+s/\b$GET_OBJECT_I\b/$GET_OBJECT_O/g
 
 s/\b$XDOC_I\b/$XDOC_O/g
 s/\b$XELEM_I\b/$XELEM_O/g
