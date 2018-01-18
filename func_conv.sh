@@ -20,6 +20,9 @@ FILE_EXISTS_O="System.IO.File.Exists"
 GET_OBJECT_I="GetObject"
 GET_OBJECT_O="Microsoft.VisualBasic.GetObject"
 
+MID_I="Strings.Mid"
+MID_O="Microsoft.VisualBasic.Strings.Mid"
+
 # Translation variables for libraries with ambiguous import paths
 
 XDOC_I="XDocument"
@@ -37,6 +40,7 @@ s/\b$DEL_FILE_I\b/$DEL_FILE_O/g
 s/\b$DIR_PATH_I\b/$DIR_PATH_O/g
 s/\b$FILE_EXISTS_I\b/$FILE_EXISTS_O/g
 s/\b$GET_OBJECT_I\b/$GET_OBJECT_O/g
+s/\b$MID_I\b/$MID_O/g
 
 s/\b$XDOC_I\b/$XDOC_O/g
 s/\b$XELEM_I\b/$XELEM_O/g
