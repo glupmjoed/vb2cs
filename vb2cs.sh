@@ -3,9 +3,10 @@
 BNAME=CodeConverterCLI
 
 # Parse flags
-while getopts ":b:r" opt; do
+while getopts ":b:pr" opt; do
     case ${opt} in
         b ) CCCLI=$OPTARG ;;
+        p ) pflag=1 ;;
         r ) rflag=1 ;;
         \? ) echo "Usage: $0 [-b FILE] [-r]" 1>&2
              exit 1 ;;
@@ -37,4 +38,4 @@ if [ $1 ]; then ./pre.sed $1; else ./pre.sed; fi |
     # Postprocess generated code. Change newlines to \r\n if -r flag is set
     if [ $rflag ]; then ./post.sed | sed 's/$/\r/g'; else ./post.sed; fi |
 
-    ./func_conv.sh
+    if [ $pflag ]; then cat; else ./func_conv.sh; fi
