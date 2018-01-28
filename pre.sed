@@ -11,7 +11,7 @@ s/\r$//
 # The rewrite rule below is part of an attempt at fixing the CodeConverter
 # library's handling of one-dimensional array declarations in VB.NET.
 #
-# We rewrite the statement
+# We rewrite statements of the form
 #     Dim <ARRAY>(<UPPER>) As <TYPE>
 # to
 #     Dim <ARRAY>__<UPPER> As <TYPE>() = New <TYPE>() {}
@@ -25,7 +25,7 @@ s/\b[dD]im (\w+)\((\w+)\) [aA]s (\w+)$/Dim \1__\2 As \3() = New \3() {}/g
 #
 # ReDim rewrite rule 1:
 #
-# Rewrite the statement
+# Rewrite statements of the form
 #     ReDim <ARRAY>(<UPPER>)
 # to
 #     System.Array.Resize(<ARRAY>, <UPPER>+1)
@@ -36,7 +36,7 @@ s/([\t ]*)[rR]e[dD]im (\w+)\((\w+)\)$/\1System.Array.Resize(\2, \3+1)\
 
 # ReDim rewrite rule 2:
 #
-# Rewrite the statement
+# Rewrite statements of the form
 #     ReDim Preserve <ARRAY>(<UPPER>)
 # to
 #     System.Array.Resize(<ARRAY>, <UPPER>+1)
