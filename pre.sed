@@ -52,3 +52,19 @@ s/([\t ]*)[rR]e[dD]im (\w+)\((\w+)\)$/\1System.Array.Resize(\2, \3+1)\
 #     System.Array.Resize(<ARRAY>, <UPPER>+1)
 
 s/\b[rR]e[dD]im [pP]reserve (\w+)\((\w+)\)$/System.Array.Resize(\1, \2+1)/g
+
+# The rewrite rule below is part of an attempt at notifying the consumer of the
+# generated code that the VB-specific "Handles" keyword has been removed by the
+# CodeConverter library.
+#
+# We rewrite statements of the form
+#
+#     Sub <FUNCTION>(<ARGS>) Handles <OBJECT>.<EVENT>
+#
+# to
+#
+#     Sub <FUNCTION>__HDL_<OBJECT>__<EVENT>(<ARGS>)
+#
+# and transform the generated C# code further at a later stage (see post.sed)
+
+s/\b([sS]ub \w+)(\(.*\)) [hH]andles (\w+)\.(\w+)\b/\1__HDL_\3__\4\2/g
