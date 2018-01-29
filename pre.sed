@@ -12,9 +12,13 @@ s/\r$//
 # library's handling of one-dimensional array declarations in VB.NET.
 #
 # We rewrite statements of the form
+#
 #     Dim <ARRAY>(<UPPER>) As <TYPE>
+#
 # to
+#
 #     Dim <ARRAY>__<UPPER> As <TYPE>() = New <TYPE>() {}
+#
 # and transform the generated C# code further at a later stage (see post.sed)
 
 s/\b[dD]im (\w+)\((\w+)\) [aA]s (\w+)$/Dim \1__\2 As \3() = New \3() {}/g
@@ -26,8 +30,11 @@ s/\b[dD]im (\w+)\((\w+)\) [aA]s (\w+)$/Dim \1__\2 As \3() = New \3() {}/g
 # ReDim rewrite rule 1:
 #
 # Rewrite statements of the form
+#
 #     ReDim <ARRAY>(<UPPER>)
+#
 # to
+#
 #     System.Array.Resize(<ARRAY>, <UPPER>+1)
 #     System.Array.Clear(<ARRAY>, 0, <ARRAY>.Length)
 
@@ -37,8 +44,11 @@ s/([\t ]*)[rR]e[dD]im (\w+)\((\w+)\)$/\1System.Array.Resize(\2, \3+1)\
 # ReDim rewrite rule 2:
 #
 # Rewrite statements of the form
+#
 #     ReDim Preserve <ARRAY>(<UPPER>)
+#
 # to
+#
 #     System.Array.Resize(<ARRAY>, <UPPER>+1)
 
 s/\b[rR]e[dD]im [pP]reserve (\w+)\((\w+)\)$/System.Array.Resize(\1, \2+1)/g
