@@ -42,7 +42,7 @@ s/\b(\w+)\[\] (\w+)__(\w+) = new \1\[\];$/\1[] \2 = new \1[\3 + 1];/g
 #
 # as the second and final stage of the workaround (see also pre.sed)
 
-s/([ \t]*)(.*)(\b\w+)__HDL_(\w+)__(\w+)(\(.*)(\b\w+)(EventArgs \w+\))/\
+s/([ \t]*)(.*)(\b\w+)__HDL_(\w+)__(\w+)(\(.*)(\b\w*)(EventArgs \w+\))/\
 \1\/\/ TODO (vb2cs):\
 \1\/\/\
 \1\/\/ Prior to code conversion, the following function used the VB-specific\
