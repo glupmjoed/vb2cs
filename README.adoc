@@ -4,8 +4,7 @@ vb2cs
 vb2cs is a command line wrapper for SharpDevelop's
 link:https://github.com/icsharpcode/CodeConverter/[VB.NET ⇨ C# converter].
 
-Setup
------
+== Setup
 
 For the script to work, you need to compile the C# project in the
 `CodeConverterCLI/` folder with a .NET toolchain. If you already have the
@@ -26,15 +25,13 @@ link:https://www.nuget.org/packages/Microsoft.CodeAnalysis/[as a binary package]
 or link:https://github.com/dotnet/roslyn[build from source].
 
 [[installation-linux]]
-Example: Linux with .NET Core CLI
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+=== Example: Linux with .NET Core CLI
 
 If the `dotnet` command is already available on your system, you can skip
 directly to xref:clone-and-build[cloning and building the project]. Otherwise,
 continue below.
 
-Install the .NET SDK
-^^^^^^^^^^^^^^^^^^^^
+==== Install the .NET SDK
 
 Locate your distribution-specific instructions in
 link:https://www.microsoft.com/net/learn/get-started/linuxubuntu[this guide] and
@@ -61,8 +58,7 @@ Install the SDK:
 [source,shell]
 $ sudo apt update && sudo apt install dotnet-sdk-2.1.4
 
-Disable Obnoxious Spying
-^^^^^^^^^^^^^^^^^^^^^^^^
+==== Disable Obnoxious Spying
 
 Microsoft distribute binaries of their
 link:https://github.com/dotnet/cli[otherwise free and open source .NET Core CLI
@@ -81,8 +77,7 @@ It can be turned off permanently by adding the above command to your `.bashrc`,
 `.profile` or similar shell configuration file.
 
 [[clone-and-build]]
-Clone and build project
-^^^^^^^^^^^^^^^^^^^^^^^
+==== Clone and build project
 
 [source,shell]
 $ git clone https://github.com/glupmjoed/vb2cs.git
@@ -115,8 +110,7 @@ $ cd ..
 
 
 [[usage]]
-Usage
------
+== Usage
 
 You'll need link:https://en.wikipedia.org/wiki/Bash_%28Unix_shell%29[Bash] or a
 similar shell environment to execute the script (`vb2cs.sh`).
@@ -143,13 +137,11 @@ $ ./vb2cs.sh file.vb
 $ ./vb2cs.sh file.vb > output.cs
 [ C# code is piped to the file output.cs ]
 
-Command-line options
-~~~~~~~~~~~~~~~~~~~~
+=== Command-line options
 
 The script's behaviour can be changed with a few different flags, described below.
 
--b
-^^
+==== -b
 
 `vb2cs.sh` searches the `CodeConverterCLI/bin/Debug/` folder recursively and uses the first file named `CodeConverterCLI` it finds as its code conversion binary. If your binary lives in another directory or has another name (e.g. `CodeConverterCLI.exe`), use the `-b` flag to specify an alternative path:
 
@@ -161,8 +153,7 @@ $ ./vb2cs.sh -b /path/to/my/codeconverter file.vb
 $ echo "passthrough" | ./vb2cs.sh -b cat
 passthrough
 
--r
-^^
+==== -r
 
 The script normally outputs C# code with Unix-style line-endings (`\n`). Use the `-r` flag if you want `\r\n` line-endings:
 
